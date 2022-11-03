@@ -11,7 +11,7 @@ Basic syntax highlighting including assemble directives and regular expressions.
 Clone the repository to the `~/.vscode/extensions` folder.
 
 ```
-git clone https://github.com/karelorigin/regexp-assemble-syntax ~/.vscode/extensions/karelorigin.regexp-assemble-syntax-0.0.1/
+git clone https://github.com/coreruleset/regexp-assemble-syntax ~/.vscode/extensions/coreruleset.regexp-assemble-syntax-0.0.1/
 ```
 
 Then reload VSCode: <kbd>Ctrl</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>, "Reload Window", <kbd>Enter</kbd>.

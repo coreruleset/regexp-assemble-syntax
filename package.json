@@ -5,9 +5,9 @@
   "version": "0.0.1",
   "repository": {
 		"type": "git",
-		"url": "https://github.com/karelorigin/regexp-assemble-syntax"
+		"url": "https://github.com/coreruleset/regexp-assemble-syntax"
 	},
-  "publisher": "karelorigin",
+  "publisher": "coreruleset",
   "engines": {
     "vscode": "^1.72.0"
   },
