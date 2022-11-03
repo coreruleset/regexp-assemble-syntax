@@ -1,0 +1,121 @@
+---
+name: RegExp-Assemble
+patterns:
+  - include: "#comments"
+  - include: "#block"
+  - include: "#regexp"
+repository:
+  comments:
+    patterns:
+      - include: "#comments_line"
+
+  comments_line:
+    name: comment.line.ra
+    begin: "##![^<>=+\\^$]"
+    end: "$\\n?"
+
+  block:
+    name: keyword.block.ra
+    patterns:
+      - include: "#block_start"
+      - include: "#block_flags"
+      - include: "#block_prefix"
+      - include: "#block_suffix"
+      - include: "#block_input"
+      - include: "#block_output"
+      - include: "#block_end"
+  block_start:
+    begin: "(##!>)"
+    end: "$\\n?"
+    beginCaptures:
+      "1":
+        name: keyword.block.start
+    patterns:
+      - include: "#directives"
+      - include: "#regexp"
+  block_flags:
+    name: keyword.block.flags
+    match: "##!\\+"
+  block_prefix:
+    name: keyword.block.prefix
+    match: "##!\\^"
+  block_suffix:
+    name: keyword.block.suffix
+    match: "##!\\$"
+  block_input:
+    name: keyword.block.input
+    match: "##!=<"
+  block_output:
+    name: keyword.block.output
+    match: "##!=>"
+  block_end:
+    name: keyword.block.end
+    match: "##!<[^=]"
+
+  directives:
+    patterns:
+      - include: "#directives_assemble"
+      - include: "#directives_define"
+      - include: "#directives_include"
+  directives_assemble:
+    match: "assemble"
+  directives_define:
+    match: (?:template|define)( [\w-]+)?
+    captures:
+      "1":
+        name: variable.other.define
+  directives_include:
+    begin: include\s
+    end: "$\\n?"
+  strings:
+    name: string.quoted.double.ra
+    begin: '"'
+    end: '"'
+    patterns:
+      - include: "#strings_escape"
+  strings_escape:
+    name: constant.character.escape.ra
+    match: "\\\\."
+
+  # Changed version of https://github.com/bradrobertson/sublime-packages/blob/master/Regular%20Expressions/RegExp.tmLanguage
+  regexp:
+    patterns:
+      - match: \|
+        name: keyword.operator.regexp
+      - match: (?<!(?<!\\)\\)[bBAZzG^$]"
+        name: keyword.control.anchors.regexp
+      - include: "#regexp_character_class"
+      - include: "#regexp_character_class"
+      - match: (?<!(?<!\\)\\)\[.*?(?<!(?<!\\)\\)\]
+        name: keyword.control.set.regexp
+        patterns:
+          - include: "#regexp_character_class"
+          - include: "#regexp_character_class"
+          - match: ".-[^\\]]"
+            name: constant.other.range.regexp
+          - match: ".&&."
+            name: keyword.operator.intersection.regexp
+        # Match all balanced parentheses, but not if escaped with a backslash
+      - match: (?<!(?<!\\)\\)\((?:[^)(]+|(?<!(?<!\\)\\)\((?:[^)(]+|(?<!(?<!\\)\\)\([^)(]*(?<!(?<!\\)\\)\)|(?<!(?<!\\)\\)\((?<!(?<!\\)\\)\([^)(]*(?<!(?<!\\)\\)\)(?<!(?<!\\)\\)\))*(?<!(?<!\\)\\)\))*(?<!(?<!\\)\\)\)
+        name: string.regexp.group
+        patterns:
+          - include: source.regexp
+          - match: "(?<=\\()\\?(<[=!]|>|=|:|!)"
+            name: constant.other.assertion.regexp
+          - match: "(?<=\\()\\?#"
+            name: comment.line.number-sign.regexp
+      - match: "\\\\(\\n\\d+|\\k\\w+|(?<!\\|)\\g\\w+)"
+        name: keyword.other.backref-and-recursion.regexp
+      - match: "\\\\([tvnrbfae]|[0-8]{3}|x\\H\\H\\{7\\H{7}\\}|x\\H\\H|c\\d+|C-\\d+|M-\\d+|M-\\\\C-\\d+)"
+        name: constant.character.escape.regexp
+      - match: ((?<!(?<!\\)\\|\()[?*+][?+]?)|\{\d*,\d*\}
+        name: keyword.operator.quantifier.regexp
+  regexp_character_class:
+    match: (?<!(?<!\\)\\)\\[wWsSdDhH]
+    name: keyword.control.character-class.regexp
+  regexp_escaped_char:
+    comment: escaped character
+    match: "\\\\."
+    name: constant.character.escape.regexp
+
+scopeName: source.ra

@@ -1,0 +1,38 @@
+{
+  "name": "regexp-assemble-syntax",
+  "displayName": "RegExp-Assemble Syntax",
+  "description": "Syntax highlighting for RegExp-Assemble files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ra",
+        "aliases": [
+          "RegExp-Assemble",
+          "ra"
+        ],
+        "extensions": [
+          ".data",
+          ".ra"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ra",
+        "scopeName": "source.ra",
+        "path": "./syntaxes/ra.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
