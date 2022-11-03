@@ -187,11 +187,11 @@
           ]
         },
         {
-          "match": "\\\\(\\n\\d+|\\k\\w+|(?<!\\|)\\g\\w+)",
+          "match": "\\\\(\\n\\d+|k\\w+|(?<!\\|)g\\w+)",
           "name": "keyword.other.backref-and-recursion.regexp"
         },
         {
-          "match": "\\\\([tvnrbfae]|[0-8]{3}|x\\H\\H\\{7\\H{7}\\}|x\\H\\H|c\\d+|C-\\d+|M-\\d+|M-\\\\C-\\d+)",
+          "match": "(?<!(?<!\\\\)\\\\)\\\\([tvnrbfae]|[0-8]{3}|x\\H\\H\\{7\\H{7}\\}|x\\H\\H|c\\d+|C-\\d+|M-\\d+|M-\\\\C-\\d+)",
           "name": "constant.character.escape.regexp"
         },
         {

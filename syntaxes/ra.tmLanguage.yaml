@@ -91,7 +91,7 @@ repository:
         patterns:
           - include: "#regexp_character_class"
           - include: "#regexp_character_class"
-          - match: ".-[^\\]]"
+          - match: .-[^\]]
             name: constant.other.range.regexp
           - match: ".&&."
             name: keyword.operator.intersection.regexp
@@ -100,13 +100,13 @@ repository:
         name: string.regexp.group
         patterns:
           - include: source.regexp
-          - match: "(?<=\\()\\?(<[=!]|>|=|:|!)"
+          - match: (?<=\()\?(<[=!]|>|=|:|!)
             name: constant.other.assertion.regexp
-          - match: "(?<=\\()\\?#"
+          - match: (?<=\()\?#
             name: comment.line.number-sign.regexp
-      - match: "\\\\(\\n\\d+|\\k\\w+|(?<!\\|)\\g\\w+)"
+      - match: \\(\n\d+|k\w+|(?<!\|)g\w+)
         name: keyword.other.backref-and-recursion.regexp
-      - match: "\\\\([tvnrbfae]|[0-8]{3}|x\\H\\H\\{7\\H{7}\\}|x\\H\\H|c\\d+|C-\\d+|M-\\d+|M-\\\\C-\\d+)"
+      - match: (?<!(?<!\\)\\)\\([tvnrbfae]|[0-8]{3}|x\H\H\{7\H{7}\}|x\H\H|c\d+|C-\d+|M-\d+|M-\\C-\d+)
         name: constant.character.escape.regexp
       - match: ((?<!(?<!\\)\\|\()[?*+][?+]?)|\{\d*,\d*\}
         name: keyword.operator.quantifier.regexp
@@ -115,7 +115,7 @@ repository:
     name: keyword.control.character-class.regexp
   regexp_escaped_char:
     comment: escaped character
-    match: "\\\\."
+    match: \\.
     name: constant.character.escape.regexp
 
 scopeName: source.ra
