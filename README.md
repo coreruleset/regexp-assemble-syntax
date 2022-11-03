@@ -14,5 +14,5 @@ Clone the repository to the `~/.vscode/extensions` folder.
 git clone https://github.com/karelorigin/regexp-assemble-syntax ~/.vscode/extensions/karelorigin.regexp-assemble-syntax-0.0.1/
 ```
 
-Then reload VSCode: CTRL + SHIFT + P, "Reload Window", Enter.
+Then reload VSCode: <kbd>Ctrl</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>, "Reload Window", <kbd>Enter</kbd>.
 
