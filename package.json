@@ -9,7 +9,13 @@
 	},
   "publisher": "coreruleset",
   "engines": {
-    "vscode": "^1.72.0"
+    "vscode": "^1.72.0",
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "test": "node ./test/runTest.js",
+    "test:grammar": "node ./test/runTest.js grammar.test.js",
+    "test:extension": "node ./test/runTest.js extension.test.js"
   },
   "categories": [
     "Programming Languages"
@@ -38,6 +44,11 @@
     ]
   },
   "devDependencies": {
-    "js-yaml": "^4.1.0"
+    "@vscode/test-electron": "^2.5.0",
+    "chai": "^4.5.0",
+    "js-yaml": "^4.1.0",
+    "mocha": "^11.7.0",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.2.1"
   }
 }
